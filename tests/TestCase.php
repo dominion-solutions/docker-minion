@@ -2,9 +2,9 @@
 
 namespace DominionSolutions\DockerMinion\Tests;
 
+use DominionSolutions\DockerMinion\DockerMinionServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use DominionSolutions\DockerMinion\DockerMinionServiceProvider;
 
 class TestCase extends Orchestra
 {

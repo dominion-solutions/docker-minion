@@ -1,12 +1,13 @@
 <?php
-use Nyholm\Psr7\Stream;
+
 use Docker\Stream\EventStream;
-use Symfony\Component\Serializer\SerializerInterface;
 use DominionSolutions\DockerMinion\Events\DockerChangedEvent;
+use Nyholm\Psr7\Stream;
+use Symfony\Component\Serializer\SerializerInterface;
 
 test('it can create an event', function () {
     Event::fake([
-        DockerChangedEvent::class
+        DockerChangedEvent::class,
     ]);
 
     $jsonStream = <<<JSON
