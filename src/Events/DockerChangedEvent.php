@@ -16,7 +16,7 @@ class DockerChangedEvent
      */
     public function __construct(
         public array $frame
-    ){}
+    ) {}
 
     /**
      * Get the channels the event should broadcast on.
