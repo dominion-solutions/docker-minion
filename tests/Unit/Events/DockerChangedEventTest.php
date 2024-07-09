@@ -4,13 +4,7 @@ use Docker\Stream\EventStream;
 use DominionSolutions\DockerMinion\Events\DockerChangedEvent;
 use Nyholm\Psr7\Stream;
 use Symfony\Component\Serializer\SerializerInterface;
-
-test('it can create an event', function () {
-    Event::fake([
-        DockerChangedEvent::class,
-    ]);
-
-    $jsonStream = <<<JSON
+dataset('jsonStream',
     [
         [
             '{}{"abc":"def"}',
@@ -25,20 +19,26 @@ test('it can create an event', function () {
             ['{"test":"abc\"{{-}"}'],
         ],
     ]
-    JSON;
+);
+
+test('it can create an event', function ($jsonStream) {
+    Event::fake([
+        DockerChangedEvent::class,
+    ]);
 
     $stream = Stream::create($jsonStream);
     $stream->rewind();
 
     $serializer = Mockery::mock(SerializerInterface::class);
-    $serializer->shouldReceive('deserialize')->andReturn($jsonStream);
+
+    $serializer->method('deserialize')->return(json_decode($jsonStream, true));
 
     $eventStream = new EventStream($stream, $serializer);
-    $eventStream->onFrame(function ($event) {
-        event(new DockerChangedEvent($event));
+    $eventStream->onFrame(function ($frame) {
+        event(new DockerChangedEvent($frame));
     });
 
     $eventStream->wait();
 
     Event::assertDispatched(DockerChangedEvent::class);
-});
+})->with('jsonStream');

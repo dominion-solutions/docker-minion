@@ -40,4 +40,6 @@ class DockerMinionServiceProvider extends PackageServiceProvider
             });
         }
     }
+
+
 }

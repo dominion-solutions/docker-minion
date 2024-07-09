@@ -14,10 +14,9 @@ class DockerChangedEvent
     /**
      * Create a new event instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public array $frame
+    ){}
 
     /**
      * Get the channels the event should broadcast on.
@@ -27,7 +26,7 @@ class DockerChangedEvent
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new PrivateChannel('docker-events'),
         ];
     }
 }
