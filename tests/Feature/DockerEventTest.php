@@ -1,8 +1,7 @@
 <?php
 
-use Docker\Docker;
 use Docker\API\Model\ContainersCreatePostBody;
-use Illuminate\Support\Str;
+use Docker\Docker;
 
 it('can spin up a docker container', function () {
     $docker = Docker::create();
@@ -14,7 +13,7 @@ it('can spin up a docker container', function () {
     $docker->containerStart($container->getId());
     $docker->containerAttach($container->getId());
     $docker->containerWait($container->getId());
-    $response = $docker->containerLogs($container->getId(),  [
+    $response = $docker->containerLogs($container->getId(), [
         'stdout' => true,
         'stderr' => true,
     ], Docker::FETCH_RESPONSE);

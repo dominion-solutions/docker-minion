@@ -1,6 +1,7 @@
 <?php
 
 use DominionSolutions\DockerMinion\DockerMinion;
+
 dataset('containerConfig', [
     ([
         new Docker\API\Model\ContainerSummary([
@@ -9,7 +10,7 @@ dataset('containerConfig', [
                 'names' => true,
                 'image' => true,
                 'imageID' => true,
-                'command' =>true,
+                'command' => true,
                 'created' => true,
                 'ports' => true,
                 'sizeRw' => true,
@@ -23,7 +24,7 @@ dataset('containerConfig', [
             ],
             'id' => 'sha256:3029aa4d72ce2474669a673ae6347762cc901eab8782a11790ab731d7707c7fc',
             'names' => ['/infallible_banach'],
-            'image' => "hello-world:latest",
+            'image' => 'hello-world:latest',
             'imageID' => 'sha256:d2c94e258dcb3c5ac2798d32e1249e42ef01cba4841c2234249495f87264ac5a',
             'command' => '/hello',
             'created' => 1720660940,
@@ -55,8 +56,8 @@ dataset('containerConfig', [
                 ],
             ]),
         ], ArrayObject::ARRAY_AS_PROPS),
-    ])
-    ]);
+    ]),
+]);
 
 it('can list containers', function ($containerConfig) {
     $minion = Mockery::mock(DockerMinion::class)->makePartial();
@@ -67,7 +68,7 @@ it('can list containers', function ($containerConfig) {
     expect($containers[0]['id'])->toBe('sha256:3029aa4d72ce2474669a673ae6347762cc901eab8782a11790ab731d7707c7fc');
 })->with('containerConfig');
 
-it('can get container statuses', function() {
+it('can get container statuses', function () {
     $minion = Mockery::mock(DockerMinion::class)->makePartial();
     $minion->shouldReceive('getContainerStatus')->andReturn('running');
     $status = $minion->getContainerStatus('fakeContainerId');

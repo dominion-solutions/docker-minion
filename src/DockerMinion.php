@@ -1,9 +1,11 @@
 <?php
+
 namespace DominionSolutions\DockerMinion;
 
 use Docker\Docker;
 
-class DockerMinion {
+class DockerMinion
+{
     private Docker $docker;
 
     /**
@@ -11,9 +13,10 @@ class DockerMinion {
      */
     public function getDocker(): Docker
     {
-        if (!isset($this->docker)) {
+        if (! isset($this->docker)) {
             $this->docker = Docker::create();
         }
+
         return $this->docker;
     }
 
