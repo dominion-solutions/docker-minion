@@ -15,7 +15,7 @@ class DockerChangedEvent
      * Create a new event instance.
      */
     public function __construct(
-        public array $frame
+        public $frame
     ) {}
 
     /**
