@@ -24,6 +24,7 @@
     "require-dev": {
         "larastan/larastan": "^2.9",
         "laravel/pint": "^1.14",
+        "composer-runtime-api": "^2.0",
         "matthewbdaly/artisan-standalone": "^0.0.12",
         "nunomaduro/collision": "^8.1.1||^7.10.0",
         "orchestra/testbench": "^9.0.0||^8.22.0",
