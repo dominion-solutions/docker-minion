@@ -25,8 +25,9 @@ it('can spin up a docker container', function () {
     try {
         $docker = Docker::create();
         $docker->systemInfo();
+
         return false;
     } catch (Exception $e) {
         return true;
     }
-}),'This test requires a running Docker daemon');
+}), 'This test requires a running Docker daemon');
