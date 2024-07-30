@@ -4,6 +4,7 @@ namespace DominionSolutions\DockerMinion;
 
 use Docker\Docker;
 use DominionSolutions\DockerMinion\Commands\DockerMinionCommand;
+use DominionSolutions\DockerMinion\Events\DockerChangedEvent;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -31,14 +32,12 @@ class DockerMinionServiceProvider extends PackageServiceProvider
     public function boot()
     {
         parent::boot();
-        if (! $this->app->runningUnitTests()) {
+        if (!$this->app->runningUnitTests()) {
             $this->docker = Docker::create();
 
             if (config('docker-minion.watch-docker')) {
                 $this->eventStream = $this->docker->systemEvents();
-                $this->eventStream->onFrame(function ($event) {
-                    event(new DockerChangedEvent($event));
-                });
+                $this->eventStream->onFrame(fn ($event) => event(new DockerChangedEvent($event)));
             }
         }
     }
