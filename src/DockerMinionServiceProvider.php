@@ -31,7 +31,7 @@ class DockerMinionServiceProvider extends PackageServiceProvider
     public function boot()
     {
         parent::boot();
-        if (!$this->app->runningUnitTests()) {
+        if (! $this->app->runningUnitTests()) {
             $this->docker = Docker::create();
 
             if (config('docker-minion.watch-docker')) {
