@@ -31,13 +31,15 @@ class DockerMinionServiceProvider extends PackageServiceProvider
     public function boot()
     {
         parent::boot();
-        $this->docker = Docker::create();
+        if (!$this->app->runningUnitTests()) {
+            $this->docker = Docker::create();
 
-        if (config('docker-minion.watch-docker')) {
-            $this->eventStream = $this->docker->systemEvents();
-            $this->eventStream->onFrame(function ($event) {
-                event(new DockerChangedEvent($event));
-            });
+            if (config('docker-minion.watch-docker')) {
+                $this->eventStream = $this->docker->systemEvents();
+                $this->eventStream->onFrame(function ($event) {
+                    event(new DockerChangedEvent($event));
+                });
+            }
         }
     }
 }
