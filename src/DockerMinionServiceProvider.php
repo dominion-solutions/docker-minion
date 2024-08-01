@@ -5,7 +5,6 @@ namespace DominionSolutions\DockerMinion;
 use Docker\Docker;
 use DominionSolutions\DockerMinion\Commands\DockerMinionCommand;
 use DominionSolutions\DockerMinion\Events\DockerChangedEvent;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -43,7 +42,7 @@ class DockerMinionServiceProvider extends PackageServiceProvider
                 $this->eventStream->onFrame(fn ($event) => event(new DockerChangedEvent($event)));
             }
         } catch (\Exception $e) {
-            Log::warning(sprintf("Could not connect to Docker Daemon: %s", $e->getMessage()));
+            Log::warning(sprintf('Could not connect to Docker Daemon: %s', $e->getMessage()));
         }
     }
 }

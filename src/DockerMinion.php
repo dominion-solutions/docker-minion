@@ -13,7 +13,7 @@ class DockerMinion
      */
     public function getDocker(): Docker
     {
-        if (!isset($this->docker)) {
+        if (! isset($this->docker)) {
             $this->docker = Docker::create();
         }
 
