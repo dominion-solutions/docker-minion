@@ -4,6 +4,7 @@ use Docker\Stream\EventStream;
 use DominionSolutions\DockerMinion\Events\DockerChangedEvent;
 use Nyholm\Psr7\Stream;
 use Symfony\Component\Serializer\SerializerInterface;
+use Illuminate\Support\Facades\Event;
 
 dataset('jsonStreamDataProvider', [
     [

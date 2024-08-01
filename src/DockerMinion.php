@@ -13,7 +13,7 @@ class DockerMinion
      */
     public function getDocker(): Docker
     {
-        if (! isset($this->docker)) {
+        if (!isset($this->docker)) {
             $this->docker = Docker::create();
         }
 
@@ -28,5 +28,47 @@ class DockerMinion
     public function listImages(): array
     {
         return $this->docker->imageList();
+    }
+
+    public function startContainerByName(string $name): void
+    {
+        $containers = $this->listContainers(['all' => true, 'filters' => json_encode(['name' => [$name]])]);
+        if (empty($containers)) {
+            throw new \Exception("Container not found: $name");
+        }
+        foreach ($containers as $container) {
+            // Added the '/' prefix to match the container name with the leading slash, in case it's left off.
+            if (in_array($name, $container->getNames()) || in_array("/$name", $container->getNames())) {
+                $this->docker->containerStart($container->getId());
+            }
+        }
+    }
+
+    public function stopContainerbyName(string $name): void
+    {
+        $containers = $this->listContainers(['all' => true, 'filters' => json_encode(['name' => [$name]])]);
+        if (empty($containers)) {
+            throw new \Exception("Container not found: $name");
+        }
+        foreach ($containers as $container) {
+            // Added the '/' prefix to match the container name with the leading slash, in case it's left off.
+            if (in_array($name, $container->getNames()) || in_array("/$name", $container->getNames())) {
+                $this->docker->containerStop($container->getId());
+            }
+        }
+    }
+
+    public function restartContainerByName(string $name): void
+    {
+        $containers = $this->listContainers(['all' => true, 'filters' => json_encode(['name' => [$name]])]);
+        if (empty($containers)) {
+            throw new \Exception("Container not found: $name");
+        }
+        foreach ($containers as $container) {
+            // Added the '/' prefix to match the container name with the leading slash, in case it's left off.
+            if (in_array($name, $container->getNames()) || in_array("/$name", $container->getNames())) {
+                $this->docker->containerRestart($container->getId());
+            }
+        }
     }
 }
