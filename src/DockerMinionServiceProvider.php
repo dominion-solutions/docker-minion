@@ -37,7 +37,7 @@ class DockerMinionServiceProvider extends PackageServiceProvider
 
             $this->docker = Docker::create();
 
-            if (config('docker-minion.watch-docker')) {
+            if (boolval(config('docker-minion.watch-docker'))) {
                 $this->eventStream = $this->docker->systemEvents();
                 $this->eventStream->onFrame(fn ($event) => event(new DockerChangedEvent($event)));
             }
