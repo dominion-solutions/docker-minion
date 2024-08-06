@@ -6,7 +6,7 @@ use Docker\Docker;
 it('can spin up a docker container', function () {
     $docker = Docker::create();
     $container = $docker->containerCreate(new ContainersCreatePostBody([
-        'image' => 'hello-world:latest',
+        'image' => 'docker.io/hello-world:latest',
         'attachStdout' => true,
         'attachStderr' => true,
     ]));
