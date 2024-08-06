@@ -39,7 +39,7 @@ class DockerMinionServiceProvider extends PackageServiceProvider
 
             if (boolval(config('docker-minion.watch-docker'))) {
                 $this->eventStream = $this->docker->systemEvents();
-                $this->eventStream->onFrame(fn ($event) => event(new DockerChangedEvent($event)));
+                $this->eventStream->onFrame(fn ($event) => event(new DockerChangedEvent($event))); //@phpstan-ignore-line
             }
         } catch (\Exception $e) {
             Log::warning(sprintf('Could not connect to Docker Daemon: %s', $e->getMessage()));
