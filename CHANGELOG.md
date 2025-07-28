@@ -2,6 +2,18 @@
 
 All notable changes to `docker-minion` will be documented in this file.
 
+## Dependency updates - 2025-07-28
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot[bot] in https://github.com/dominion-solutions/docker-minion/pull/3
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot[bot] in https://github.com/dominion-solutions/docker-minion/pull/4
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/dominion-solutions/docker-minion/pull/5
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/dominion-solutions/docker-minion/pull/7
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/dominion-solutions/docker-minion/pull/6
+
+**Full Changelog**: https://github.com/dominion-solutions/docker-minion/compare/0.0.1...0.0.2
+
 ## Initial Release - 2024-08-06
 
 ### Basic Functionality
