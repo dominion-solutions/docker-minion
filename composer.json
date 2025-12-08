@@ -22,7 +22,7 @@
         "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {
-        "larastan/larastan": "^2.9|3.8",
+        "larastan/larastan": "^2.0|^3.0",
         "laravel/pint": "^1.14",
         "composer-runtime-api": "^2.0",
         "matthewbdaly/artisan-standalone": "^0.0.12",
