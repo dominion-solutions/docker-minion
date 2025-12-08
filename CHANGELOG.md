@@ -2,6 +2,16 @@
 
 All notable changes to `docker-minion` will be documented in this file.
 
+## 0.0.3 - Updated Docker PHP - 2025-12-08
+
+### What's Changed
+
+* Updated docker-php versions by @spam-n-eggs in https://github.com/dominion-solutions/docker-minion/pull/11
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/dominion-solutions/docker-minion/pull/9
+* Bump actions/checkout from 4 to 6 by @dependabot[bot] in https://github.com/dominion-solutions/docker-minion/pull/10
+
+**Full Changelog**: https://github.com/dominion-solutions/docker-minion/compare/0.0.2...0.1.0
+
 ## Dependency updates - 2025-07-28
 
 ### What's Changed
